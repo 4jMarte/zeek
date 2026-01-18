@@ -3,190 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy birthday olly!!!</title>
+    <title>Happy birthday Zeek!!!</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0ffe6;
-            color: #4b8a5e;
-            overflow-x: hidden;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3a 50%, #0c0c20 100%);
+        color: #e0f7ff;
+        overflow-x: hidden;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
 
+    .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        max-height: 90vh;
+        overflow: hidden;
+    }
+
+    .gallery-container {
+        position: relative;
+        width: 100%;
+        min-height: 400px;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(0, 20, 80, 0.3),
+                    0 0 30px rgba(100, 150, 255, 0.1) inset;
+        background: linear-gradient(145deg, #0c1a3a 0%, #152a57 100%);
+        border: 1px solid rgba(100, 150, 255, 0.2);
+        flex: 1;
+        margin-bottom: 20px;
+    }
+
+    .gallery {
+        display: flex;
+        width: 1200%;
+        height: 100%;
+        transition: transform 0.5s ease;
+    }
+
+    .slide {
+        width: 8.33%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        min-height: 100%;
+        box-sizing: border-box;
+    }
+
+    .image-box {
+        width: 100%;
+        flex: 0 0 auto;
+        min-height: 200px;
+        max-height: 300px;
+        background: linear-gradient(145deg, #1a2b5a 0%, #0d1a3a 100%);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(100, 150, 255, 0.3);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .image-box img,
+    .image-box video {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .message-box {
+        width: 100%;
+        background: linear-gradient(145deg, #1e3a6a 0%, #152a57 100%);
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        font-size: 16px;
+        line-height: 1.4;
+        word-wrap: break-word;
+        flex: 1 1 auto;
+        min-height: 60px;
+        overflow-y: auto;
+        max-height: 300px;
+        border: 1px solid rgba(100, 150, 255, 0.2);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        color: #cce7ff;
+    }
+
+    .heart {
+        position: absolute;
+        pointer-events: none;
+        z-index: 10;
+        transition: transform 0.2s;
+        filter: drop-shadow(0 0 8px rgba(100, 180, 255, 0.7));
+    }
+
+    .heart img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .indicators {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #2a4a8a 0%, #1a3a7a 100%);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(100, 180, 255, 0.3);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .indicator.active {
+        background: linear-gradient(145deg, #4a8aff 0%, #2a6aff 100%);
+        box-shadow: 0 0 15px rgba(100, 180, 255, 0.8),
+                    0 0 5px rgba(100, 180, 255, 0.5) inset;
+        transform: scale(1.2);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #88ccff;
+        text-shadow: 0 0 20px rgba(100, 200, 255, 0.7),
+                     0 0 40px rgba(100, 200, 255, 0.3);
+        font-size: 2.2em;
+        letter-spacing: 1px;
+        background: linear-gradient(45deg, #88ccff, #4a8aff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Add some star effects in the background */
+    .gallery-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(100, 150, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(100, 180, 255, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 1;
+        border-radius: 15px;
+    }
+
+    /* Custom scrollbar for message box */
+    .message-box::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .message-box::-webkit-scrollbar-track {
+        background: rgba(0, 20, 50, 0.3);
+        border-radius: 3px;
+    }
+
+    .message-box::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #4a8aff, #2a6aff);
+        border-radius: 3px;
+    }
+
+    .message-box::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #5a9aff, #3a7aff);
+    }
+
+    @media (max-width: 768px) {
         .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+            padding: 10px;
+            max-height: 95vh;
         }
-
+        
         .gallery-container {
-            position: relative;
-            width: 100%;
-            height: 70vh;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            background-color: #fff;
+            min-height: 300px;
         }
-
-        .gallery {
-            display: flex;
-            width: 300%;
-            height: 100%;
-            transition: transform 0.5s ease;
-        }
-
-        .slide {
-            width: 33.33%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            height: 100%;
-        }
-
+        
         .image-box {
-            width: 100%;
-            height: 60%;
-            background-color: #d1ffdc;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
+            min-height: 150px;
+            max-height: 200px;
         }
-
-        .image-box img,
-        .image-box video {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
+        
         .message-box {
-            width: 100%;
-            background-color: #b6ffc1;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            font-size: 16px;
-            line-height: 1.4;
-            word-wrap: break-word;
-            /* Removed flex: 1 to prevent forced expansion */
-            min-height: 80px; /* Minimum height for short messages */
+            font-size: 14px;
+            padding: 10px;
+            max-height: 200px;
         }
-
-        .heart {
-            position: absolute;
-            pointer-events: none;
-            z-index: 10;
-            transition: transform 0.2s;
-            filter: drop-shadow(0 0 3px rgba(105, 255, 180, 0.5));
-        }
-
-        .heart img {
-            width: 100%;
-            height: 100%;
-        }
-
-        .indicators {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #b6ffc1;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .indicator.active {
-            background-color: #69ffb4;
-        }
-
+        
         h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #33d384;
+            font-size: 1.8em;
         }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .gallery-container {
-                height: 65vh;
-            }
-            
-            .message-box {
-                font-size: 14px;
-                padding: 10px;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
+	<audio id="bgMusic" autoplay loop>
+		<source src="music.mp4" type="audio/mp4">
+		Your browser does not support the audio element.
+	</audio>	
     <div class="container">
-        <h1>Happy Birthday Olly!!!<3<3<3</h1>
+        <h1>Happy Birthday Zeek!!!<3<3<3</h1>
         
         <div class="gallery-container" id="galleryContainer">
             <div class="gallery" id="gallery">
-                <div class="slide">
+                
+				
+				<div class="slide">
                     <div class="image-box">
                         <img src="img1.jpeg" alt="Image 1">
                     </div>
                     <div class="message-box">
-                       Happy Happy birthday to our favourite mechatronic boy!!! Im so grateful for your presence in my life. I wish we had met sooner because you are extremely chill and an awesome human being, you make me proud to call you my friend. You mean so much to me, you are more than just a friend but also a brother i can depend on. I love you bro, heres to more years of friendship!!!!!!  -John
+                       HAPPY BIRTHDAY TO MY SAYANG!!! Zeek I thank God for the blessing that is you. Not many people get to call you a friend and I'm so grateful to have such a blessing in my life. 
                     </div>
                 </div>
-                <div class="slide">
+                
+				
+				<div class="slide">
                     <div class="image-box">
-                        <img src="img2.jpeg" alt="Image 2">
+                        <img src="img2.jpg" alt="Image 2">
                     </div>
                     <div class="message-box">
-                         Heyyyy olly happy bdayy 🤭🎉🥳 Im so glad to have met such an amazing and caring friend like you, you have been such a big blessing in all our lives ❤️❤️🥳🥳🥳  -kareem
+					We have gone a long way together since first year. You are one of the very few people that got to see what my face looks like behind the mask haha. You were such a cute boy and I love how you looked up to me as your abang. You will always by a little boy in my eyes sayang
                     </div>
                 </div>
-                <div class="slide">
+                
+				
+				<div class="slide">
                     <div class="image-box">
-                       <img src="img3.jpeg" alt="Image 3">
+                       <img src="img3.png" alt="Image 3">
                     </div>
                     <div class="message-box">
-                       Happy birthday Ollie! 🎉🎊it's been so fun getting to know u the last year 💖 can't wait for more tea fueled study sessions and lots more chats this year 🤭 hope u have the best best day and we can celebrate when I get back from Germany ☺️ love uuu -Gabi
+						After 4 year I still get excited when my favourite podcaster is on. Every single call ive recorded. Sadly I could not figure out how to saved the audio from you side just mine. The world will never know how insightful each word is and how much knowledge you have despite your little age. 
                     </div>
                 </div>
+
+
+				<div class="slide">
+                    <div class="image-box">
+                       <img src="img4.jpeg" alt="Image 3">
+                    </div>
+                    <div class="message-box">
+						I love going to random events with you and just have the best time of my life. Like this was after a dance class with Joyce. Just so much memories of having so much fun.
+                    </div>
+                </div>				
+				
+				
+				<div class="slide">
+                    <div class="image-box">
+                       <img src="img5.jpeg" alt="Image 3">
+                    </div>
+                    <div class="message-box">
+						Friends come and go but luckily you are more than just a friend, you are family now so I do not expect you to go
+                    </div>
+                </div>				
+				
+				<div class="slide">
+                    <div class="image-box">
+                       <img src="img6.jpeg" alt="Image 3">
+                    </div>
+                    <div class="message-box">
+						Don’t forget the original trio!!! We love you just the same and that will never change
+
+                    </div>
+                </div>					
+
+
+				<div class="slide">
+                    <div class="image-box">
+                       <img src="img7.jpeg" alt="Image 3">
+                    </div>
+                    <div class="message-box">
+						You are such a big boy now and Im very proud of what you have become. Im proud of every milestones that you have gone through. Wins after wins. But I also got to see your losses and im grateful that you still go to me for every time you needed someone to be there for you.
+
+                    </div>
+                </div>	
+
+
+				<div class="slide">
+                    <div class="image-box">
+                       <img src="img8.jpeg" alt="Image 3">
+                    </div>
+                    <div class="message-box">
+						Nevermind still a dork hehe
+                    </div>
+                </div>	
+
+				<div class="slide">
+                    <div class="image-box">
+                       <img src="img9.jpeg" alt="Image 3">
+                    </div>
+                    <div class="message-box">
+						Still the cutest dork ever
+                    </div>
+                </div>	
+
+				<div class="slide">
+                    <div class="image-box">
+                       <img src="img10.jpeg" alt="Image 3">
+                    </div>
+                    <div class="message-box">
+						But even though you are still my dorky little brother you still manage to have big boy things
+
+                    </div>
+                </div>	
+
+
+				<div class="slide">
+                    <div class="image-box">
+                       <img src="img11.jpeg" alt="Image 3">
+                    </div>
+                    <div class="message-box">
+						Big boy things that people look up at you for
+                    </div>
+                </div>	
+
+				<div class="slide">
+                    <div class="image-box">
+                       <img src="img12.jpeg" alt="Image 3">
+                    </div>
+                    <div class="message-box">
+						Im glad I got to share those big boy things with you. Here's to more years of dorkiness and more years of big boy wins. Happy birthday zeek!
+                    </div>
+                </div>	
+
+
+
+
+
+				
             </div>
         </div>
         
         <div class="indicators" id="indicators">
-            <div class="indicator active" data-index="0"></div>
-            <div class="indicator" data-index="1"></div>
-            <div class="indicator" data-index="2"></div>
-        </div>
+			<div class="indicator active" data-index="0"></div>
+			<div class="indicator" data-index="1"></div>
+			<div class="indicator" data-index="2"></div>
+			<div class="indicator" data-index="3"></div>
+			<div class="indicator" data-index="4"></div>
+			<div class="indicator" data-index="5"></div>
+			<div class="indicator" data-index="6"></div>
+			<div class="indicator" data-index="7"></div>
+			<div class="indicator" data-index="8"></div>
+			<div class="indicator" data-index="9"></div>
+			<div class="indicator" data-index="10"></div>
+			<div class="indicator" data-index="11"></div>
+		</div>
     </div>
 
     <script>
+		
+		
+		// Audio autoplay for music.mp4
+const bgMusic = document.getElementById('bgMusic');
+let audioStarted = false;
+
+// Try to play immediately
+bgMusic.play().catch(error => {
+    console.log("Autoplay blocked - will play on first interaction");
+});
+
+// Function to start audio on user interaction
+function startAudio() {
+    if (!audioStarted && bgMusic.paused) {
+        bgMusic.play()
+            .then(() => {
+                audioStarted = true;
+                console.log("🎵 Birthday music started!");
+            })
+            .catch(error => {
+                console.log("Could not start music:", error);
+            });
+        
+        // Remove listeners after success
+        document.removeEventListener('click', startAudio);
+        document.removeEventListener('touchstart', startAudio);
+        document.removeEventListener('keydown', startAudio);
+    }
+}
+
+// Listen for any user interaction
+document.addEventListener('click', startAudio);
+document.addEventListener('touchstart', startAudio);
+document.addEventListener('keydown', startAudio);
+
+// Also try when page is fully loaded
+window.addEventListener('load', function() {
+    setTimeout(() => {
+        if (!audioStarted) {
+            bgMusic.play().catch(() => {
+                console.log("Still waiting for user interaction...");
+            });
+        }
+    }, 1000);
+});
+
+// Set initial volume (70%)
+bgMusic.volume = 0.7;
+		
+		
         document.addEventListener('DOMContentLoaded', function() {
             const gallery = document.getElementById('gallery');
             const indicators = document.querySelectorAll('.indicator');
@@ -216,8 +455,7 @@
                 
                 // Create heart image - using your heart.png file
                 const heartImg = document.createElement('img');
-                heartImg.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjNjlmZmI0IiBkPSJNNDcyLjcgMTUwLjdjMjEuOS0yMS45IDIxLjktNTcuMyAwLTc5LjJMMzYwLjcgMzguOGMtMjEuOS0yMS45LTU3LjMtMjEuOS03OS4yIDBMMjU2IDY0LjVMMjMwLjUgMzguOGMtMjEuOS0yMS45LTU3LjMtMjEuOS03OS4yIDBMMzkuMyA3MS41Yy0yMS45IDIxLjktMjEuOSA1Ny4zIDAgNzkuMmw3OS4yIDc5LjIgMTEzLjUgMTEzLjVjOS40IDkuNCAyMS43IDE0LjEgMzMuOSAxNC4xczI0LjUtNC43IDMzLjktMTQuMWwxMTMuNS0xMTMuNSA3OS4yLTc5LjJ6Ii8+PC9zdmc+';
-                heartImg.alt = 'Floating heart';
+				heartImg.src = 'heart.png'; // or whatever your heart image file is named
                 heart.appendChild(heartImg);
                 
                 // Random position at the bottom of the image boxes
@@ -319,13 +557,13 @@
                 
                 // Minimum swipe distance
                 if (Math.abs(diff) > 50) {
-                    if (diff > 0 && currentIndex < 2) {
-                        // Swipe left - next
-                        currentIndex++;
-                    } else if (diff < 0 && currentIndex > 0) {
-                        // Swipe right - previous
-                        currentIndex--;
-                    }
+                    if (diff > 0 && currentIndex < 11) { // Changed from 2 to 11 (0-11 = 12 slides)
+					// Swipe left - next
+					currentIndex++;
+				} else if (diff < 0 && currentIndex > 0) {
+					// Swipe right - previous
+					currentIndex--;
+				}
                     
                     updateGallery();
                 }
@@ -339,18 +577,19 @@
                 });
             });
             
-            function updateGallery() {
-                gallery.style.transform = `translateX(-${currentIndex * 33.33}%)`;
-                
-                // Update indicators
-                indicators.forEach((indicator, index) => {
-                    if (index === currentIndex) {
-                        indicator.classList.add('active');
-                    } else {
-                        indicator.classList.remove('active');
-                    }
-                });
-            }
+			function updateGallery() {
+				// Changed from 33.33 to 8.33 to match the slide width
+				gallery.style.transform = `translateX(-${currentIndex * 8.33}%)`;
+				
+				// Update indicators
+				indicators.forEach((indicator, index) => {
+					if (index === currentIndex) {
+						indicator.classList.add('active');
+					} else {
+						indicator.classList.remove('active');
+					}
+				});
+			}
         });
     </script>
 </body>
